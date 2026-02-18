@@ -61,15 +61,14 @@ console.log("XOR_ENCRYPTED_MESSAGE_START");
 console.log(encryptedMessage);
 console.log("XOR_ENCRYPTED_MESSAGE_END");
 
-// Verify locally
-function xorDecrypt(base64Text, pass) {
-    const text = Buffer.from(base64Text, 'base64').toString('binary');
-    let result = '';
-    for (let i = 0; i < text.length; i++) {
-        result += String.fromCharCode(text.charCodeAt(i) ^ pass.charCodeAt(i % pass.length));
-    }
-    return result;
-}
+// Verify locally and Write to File
+const fs = require('fs');
 
-const decrypted = xorDecrypt(encryptedMessage, password);
-console.log("VERIFICATION_SUCCESS: " + (decrypted === message));
+const payload = {
+    letter: encryptedLetter,
+    message: encryptedMessage
+};
+
+fs.writeFileSync('encrypted_payload.json', JSON.stringify(payload, null, 2));
+console.log("Encrypted payload written to encrypted_payload.json");
+

@@ -16,11 +16,25 @@ const passwordInput = document.getElementById('password-input');
 const loginBtn = document.getElementById('login-btn');
 const loginError = document.getElementById('login-error');
 
-// Encrypted Data (Generated via AES)
-const encryptedLetter = "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";
-const encryptedMessage = "U2FsdGVkX19R8J5lT5y9SvogSS9+eTAfi+ctLo2jQszIlisSh9fjiDA4UsqtVej+Gu76cCcE633ydnTFdXJQFf7PVDiFPJHi+V9PlKKjmyHL4siYRw2TUFhHu4mLLt/02BNVHTYOaMHrpxf1LpOmRZ7qPNI1gCetEYnJESuylnrSyD44x8gbkLvrmcFkd3yrHayeEMfb7TXdGfEvZEZH3BZk4D0enRYH7wUXgJXwNw6RLjdt5DZNLjlq9q34Yn7a";
+// Encrypted Data (Generated via Simple XOR Cipher)
+const encryptedLetter = "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";
+const encryptedMessage = "Fw0IHhUSJ0g6BBkNIwlFTAcEcwAIGhVBIQ0fBRUWNgxJFR8UIUgZHh8HOgQMTBUZJw0HHxkXNgQQQlA4PB0bTBsIPQwHCQMSf0gaARkNNkRJDR4FcxgMAwANNkgaBxkNPxtJDQIEcw0RDxURJwEGAhENfUg+CVAWPB0FCFANOgMMTAQOcw0RGBUPN0gITAAEIQUIAhUPJ0gGChYEIUZHQg==";
 
 let decryptedMessage = "";
+
+// Simple XOR Decryption Function
+function xorDecrypt(base64Text, key) {
+    try {
+        const text = atob(base64Text);
+        let result = '';
+        for (let i = 0; i < text.length; i++) {
+            result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+        }
+        return result;
+    } catch (e) {
+        return null;
+    }
+}
 
 function attemptLogin() {
     const password = passwordInput.value;
@@ -31,29 +45,25 @@ function attemptLogin() {
 
     try {
         // Try decrypting message first as a quick check
-        const bytes = CryptoJS.AES.decrypt(encryptedMessage, password);
-        const decryptedUtf8 = bytes.toString(CryptoJS.enc.Utf8);
+        const decryptedUtf8 = xorDecrypt(encryptedMessage, password);
 
-        if (decryptedUtf8 && decryptedUtf8.length > 5) {
+        if (decryptedUtf8 && decryptedUtf8.length > 5 && decryptedUtf8.includes("Dearest")) {
             // Success!
             decryptedMessage = decryptedUtf8;
-            localStorage.setItem('site_access_token', 'granted'); // Session persistence
+            localStorage.setItem('site_access_token', 'granted');
             
             // Decrypt Letter Content
-            const letterBytes = CryptoJS.AES.decrypt(encryptedLetter, password);
-            const letterHtml = letterBytes.toString(CryptoJS.enc.Utf8);
+            const letterHtml = xorDecrypt(encryptedLetter, password);
             
             if (letterHtml) {
-                // Store/Use globally or just inject when needed
                 window.decryptedLetterContent = letterHtml;
                 
                 // Hide Overlay
                 loginOverlay.style.opacity = '0';
                 setTimeout(() => {
                     loginOverlay.style.display = 'none';
-                    // Trigger Intro only after login
                     const introOverlay = document.getElementById('intro-overlay');
-                    if (introOverlay) introOverlay.classList.add('visible'); // If needed
+                    if (introOverlay) introOverlay.classList.add('visible');
                 }, 500);
 
             } else {
@@ -608,104 +618,38 @@ setInterval(updateUptime, 1000); // Update every second
 updateUptime(); // Initial call
 
 // ---------------------------------------------------------
-// Digital Signature Pad Logic (Wrapped for Re-init)
+// Digital Signature Pad Logic (Modified: Only Accept Button)
 // ---------------------------------------------------------
 function setupSignaturePad() {
-    const canvas = document.getElementById('signature-pad');
-    const clearSigBtn = document.getElementById('clear-sig-btn');
     const lockSigBtn = document.getElementById('lock-sig-btn');
-    const placeholder = document.querySelector('.sig-placeholder');
-
-if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let isDrawing = false;
-    let lastX = 0;
-    let lastY = 0;
-
-    // Style
-    ctx.strokeStyle = "#000"; // Pen color
-    ctx.lineJoin = "round";
-    ctx.lineCap = "round";
-    ctx.lineWidth = 2;
-
-    function draw(e) {
-        if (!isDrawing) return;
-        
-        // Prevent scrolling on touch
-        e.preventDefault();
-
-        // Get Position
-        let offsetX, offsetY;
-        if (e.type.includes('touch')) {
-            const rect = canvas.getBoundingClientRect();
-            offsetX = e.touches[0].clientX - rect.left;
-            offsetY = e.touches[0].clientY - rect.top;
-        } else {
-            offsetX = e.offsetX;
-            offsetY = e.offsetY;
-        }
-
-        ctx.beginPath();
-        ctx.moveTo(lastX, lastY);
-        ctx.lineTo(offsetX, offsetY);
-        ctx.stroke();
-        [lastX, lastY] = [offsetX, offsetY];
-        
-        // Hide placeholder on first draw
-        if (placeholder) placeholder.style.display = 'none';
-    }
-
-    function startDrawing(e) {
-        isDrawing = true;
-        
-        if (e.type.includes('touch')) {
-            const rect = canvas.getBoundingClientRect();
-            lastX = e.touches[0].clientX - rect.left;
-            lastY = e.touches[0].clientY - rect.top;
-        } else {
-            lastX = e.offsetX;
-            lastY = e.offsetY;
-        }
-    }
-
-    // Event Listeners for Draw
-    canvas.addEventListener('mousedown', startDrawing);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', () => isDrawing = false);
-    canvas.addEventListener('mouseout', () => isDrawing = false);
-
-    // Touch Support
-    canvas.addEventListener('touchstart', startDrawing, { passive: false });
-    canvas.addEventListener('touchmove', draw, { passive: false });
-    canvas.addEventListener('touchend', () => isDrawing = false);
-
-    // Clear Button
-    if (clearSigBtn) {
-        clearSigBtn.addEventListener('click', () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (placeholder) placeholder.style.display = 'block';
-        });
-    }
 
     // Accept/Lock Button
     if (lockSigBtn) {
-        lockSigBtn.addEventListener('click', () => {
-            // Visual Lock Effect
-            canvas.style.pointerEvents = 'none';
-            canvas.style.opacity = '0.7';
+        // Remove old listeners if any by cloning (simple trick)
+        const newBtn = lockSigBtn.cloneNode(true);
+        if(lockSigBtn.parentNode) {
+            lockSigBtn.parentNode.replaceChild(newBtn, lockSigBtn);
+        }
+        
+        newBtn.addEventListener('click', () => {
+             // Visual Lock Effect
+            newBtn.innerText = "Accepted ✅";
+            newBtn.disabled = true;
+            newBtn.style.background = "#00b894";
+            newBtn.style.cursor = "default";
+            newBtn.style.transform = "scale(1.05)";
+            newBtn.style.boxShadow = "0 0 15px #00b894";
             
-            // Disable buttons
-            clearSigBtn.style.display = 'none';
-            lockSigBtn.innerText = "Accepted ✅";
-            lockSigBtn.disabled = true;
-            lockSigBtn.style.background = "#00b894";
-            lockSigBtn.style.borderColor = "#00b894";
-
             // Add Stamp Effect
             const stamp = document.createElement('div');
             stamp.className = 'stamp-seal';
             stamp.innerText = "OFFER ACCEPTED";
-            canvas.parentElement.appendChild(stamp);
+            
+            // Append to parent of button or specific container
+            if (newBtn.parentElement && newBtn.parentElement.parentElement) {
+                 // Try to append to the acceptance section
+                 newBtn.parentElement.parentElement.appendChild(stamp);
+            }
             
             // Confetti
             confetti({
@@ -715,7 +659,6 @@ if (canvas) {
                 colors: ['#ff3366', '#d4af37', '#ffffff'] // Love colors
             });
         });
-    }
     }
 }
 
