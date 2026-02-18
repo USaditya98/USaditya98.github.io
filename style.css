@@ -1578,3 +1578,98 @@ h1 {
         font-size: 1.3rem;
     }
 }
+
+/* =========================================
+   Security & Login UI 
+   ========================================= */
+#login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 12, 41, 0.95);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+.login-box {
+    text-align: center;
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.login-box h2 {
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-size: 1.8rem;
+}
+
+.login-box p {
+    margin-bottom: 25px;
+    color: #ccc;
+    font-size: 1rem;
+}
+
+#password-input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+#password-input:focus {
+    border-color: var(--primary);
+}
+
+.error-msg {
+    color: #ff4757;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    min-height: 20px;
+    font-weight: 600;
+}
+
+.glow-btn {
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #ff3366, #6c5ce7);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+    transition: transform 0.2s;
+}
+
+.glow-btn:hover {
+    transform: scale(1.05);
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
