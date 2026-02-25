@@ -1,3 +1,25 @@
+// Time restriction: Do not open site after 1 AM (and before 5 AM)
+const currentHour = new Date().getHours();
+if (currentHour >= 1 && currentHour <= 5) {
+    document.body.innerHTML = `
+        <div style="display:flex; height:100vh; align-items:center; justify-content:center; flex-direction:column; background:#121212; color:#fff; font-family:'Outfit', sans-serif;">
+            <h1 style="color:#ff3366; margin-bottom:10px;">Time to Sleep! 🌙</h1>
+            <p style="font-size: 1.2rem; text-align:center; padding: 0 20px;">It's past 1 AM. Go to sleep! ❤️<br>The site will open again in the morning.</p>
+        </div>
+    `;
+    throw new Error("Site locked. It is past 1 AM.");
+}
+
+// Close site after 1 hour of usage
+setTimeout(() => {
+    document.body.innerHTML = `
+        <div style="display:flex; height:100vh; align-items:center; justify-content:center; flex-direction:column; background:#121212; color:#fff; font-family:'Outfit', sans-serif;">
+            <h1 style="color:#ff3366; margin-bottom:10px;">Take a Break! ⏳</h1>
+            <p style="font-size: 1.2rem; text-align:center; padding: 0 20px;">You've been checking this for an hour! ❤️</p>
+        </div>
+    `;
+}, 60 * 60 * 1000);
+
 const mainCard = document.getElementById('main-card');
 const actionButtons = document.getElementById('action-buttons');
 const typingText = document.getElementById('typing-text');
