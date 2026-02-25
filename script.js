@@ -1,12 +1,7 @@
-// Elements
 const mainCard = document.getElementById('main-card');
-const proposalCard = document.getElementById('proposal-card');
 const actionButtons = document.getElementById('action-buttons');
 const typingText = document.getElementById('typing-text');
-const viewOfferBtn = document.getElementById('view-offer-btn');
-const yesBtn = document.getElementById('yes-btn');
-const noBtn = document.getElementById('no-btn');
-const successOverlay = document.getElementById('success-overlay');
+
 
 // ---------------------------------------------------------
 // Security & Encryption Logic
@@ -16,75 +11,77 @@ const passwordInput = document.getElementById('password-input');
 const loginBtn = document.getElementById('login-btn');
 const loginError = document.getElementById('login-error');
 
-// Encrypted Data (Generated via Simple XOR Cipher)
-const encryptedLetter = "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";
-const encryptedMessage = "Fw0IHhUSJ0g6BBkNIwlFTAcEcwAIGhVBIQ0fBRUWNgxJFR8UIUgZHh8HOgQMTBUZJw0HHxkXNgQQQlA4PB0bTBsIPQwHCQMSf0gaARkNNkRJDR4FcxgMAwANNkgaBxkNPxtJDQIEcw0RDxURJwEGAhENfUg+CVAWPB0FCFANOgMMTAQOcw0RGBUPN0gITAAEIQUIAhUPJ0gGChYEIUZHQg==";
+// Data (Plain Text for Simple Login)
+const plainLetter = `
+<p>The story of us is a beautiful, unwritten script—a unique "system update" that shifted the rhythm of my life from the moment you stepped into our office. Back in August, a month that became sacred twice—first for your birth (Aug 13th) and then for our beginning—I was just a developer buried in Logic, while you were the new HR professional navigating the chaos of people with such grace.</p>
 
-let decryptedMessage = "";
+<p>Our first interactions were so formal—discussing paperwork with thumbs-up emojis. I never imagined that a colleague from the HR department would become the person I wait for at the end of every long deployment.</p>
 
-// Simple XOR Decryption Function
-function xorDecrypt(base64Text, key) {
-    try {
-        const text = atob(base64Text);
-        let result = '';
-        for (let i = 0; i < text.length; i++) {
-            result += String.fromCharCode(text.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-        }
-        return result;
-    } catch (e) {
-        return null;
-    }
-}
+<p>Then came that first "Oiii" in September, breaking every professional protocol. We spoke in a secret mix of Kannada and Malayalam. Every "Ree" and "Psychopath" was a brick removed from the wall around my heart. You turned from a stranger into my favorite notification.</p>
+
+<p>As October rolled in, we became a sanctuary for each other. I saw the "Psychopath" side of you—fiercely independent and sharp. You saw the side of me that hid behind sarcasm but paid attention to every detail of your day. Our "night talks" became my reason to get through the work day.</p>
+
+<p>The most profound shift happened when silence became a space for vulnerability. I told you about the hospital corridors, the void left by my father. You didn't offer distant condolences; you stepped into my heart and said, "Be happy every day." You became my emotional anchor.</p>
+
+<p>We started playing the "ABCD story" game—a confession hidden in fiction. We wrote about a boy and girl, testing boundaries because we were terrified of real names. But every word was true. We were falling in love through characters.</p>
+
+<p>Then came the bus ride. The turning point. The city blurred, distance vanished, and that kiss was the moment logic died. I realized my fears were being overwritten by pure joy. We crossed the line into a shared world, ignoring every office policy.</p>
+
+<p>By January, masks were gone. You became my "Chinna," my "Muddu mari." I became your "Comfort Zone." We dreamed of "Terrace escapes" and navigated life together. Every "Goodnight ❤️" was a promise.</p>
+
+<p>Now, we stand at a crossroads without a label. We hold the weight of uncertainty but also the freedom of choosing each other. The future is a landscape of "ifs," but I want you to be proud of our story. There is a profound loyalty between us that is safer than any contract.</p>
+
+<p>I look at you and see the person who rewrote the code of my happiness. You are the "Shina" who saw me at my worst and chose to stay. You have a claim on my soul that is eternal.</p>
+
+<p>We leave it to the future, holding onto quiet hope. Until then, I cherish every message. Let's keep moving forward, trusting that our hearts know the way.</p>
+
+<div class="signature-section">
+    <p class="yours">Yours,</p>
+    <p class="sign-name">Your Dev</p>
+</div>
+
+<div class="acceptance-section" style="text-align: center; margin-top: 30px;">
+    <hr class="divider">
+    <p class="hr-instruction" style="margin-bottom: 20px; font-style: italic; opacity: 0.8;">Hired by Heart & Verified Forever ❤️</p>
+</div>
+`;
+
+const plainIntro = "Shilpa, you walked into my life and made everything feel different. Your laugh, your dance, the way you light up a room — I never knew I needed someone like you until you were here. You're not perfect, and neither am I, but together we make the most beautiful mess. Every moment with you feels like home. I love you — not because you're flawless, but because you're real, and you're mine.";
 
 function attemptLogin() {
-    const password = passwordInput.value;
+    const password = passwordInput.value.trim();
     if (!password) {
         loginError.innerText = "Please enter a password.";
         return;
     }
 
-    try {
-        // Try decrypting message first as a quick check
-        const decryptedUtf8 = xorDecrypt(encryptedMessage, password);
+    // Direct Password Check (Simplified as requested)
+    if (password === "0708" || password === "Shilpa") {
+        console.log("Login Successful!");
+        
+        // Success Logic
+        decryptedMessage = plainIntro;
+        window.decryptedLetterContent = plainLetter;
+        localStorage.setItem('site_access_token', 'granted');
+        
+        // Hide Overlay
+        loginOverlay.style.opacity = '0';
+        setTimeout(() => {
+            loginOverlay.style.display = 'none';
+            const introOverlay = document.getElementById('intro-overlay');
+            if (introOverlay) introOverlay.classList.add('visible');
+        }, 200);
 
-        if (decryptedUtf8 && decryptedUtf8.length > 5 && decryptedUtf8.includes("Dearest")) {
-            // Success!
-            decryptedMessage = decryptedUtf8;
-            localStorage.setItem('site_access_token', 'granted');
-            
-            // Decrypt Letter Content
-            const letterHtml = xorDecrypt(encryptedLetter, password);
-            
-            if (letterHtml) {
-                window.decryptedLetterContent = letterHtml;
-                
-                // Hide Overlay
-                loginOverlay.style.opacity = '0';
-                setTimeout(() => {
-                    loginOverlay.style.display = 'none';
-                    const introOverlay = document.getElementById('intro-overlay');
-                    if (introOverlay) introOverlay.classList.add('visible');
-                }, 500);
-
-            } else {
-                 throw new Error("Decryption Check Failed");
-            }
-
-        } else {
-            loginError.innerText = "Access Denied: Incorrect Password.";
-            
-            // Animation shake
-            const box = document.querySelector('.login-box');
+    } else {
+        console.warn("Login Failed: Incorrect Password.");
+        loginError.innerText = "Access Denied: Incorrect Password.";
+        
+        // Animation shake
+        const box = document.querySelector('.login-box');
+        if (box) {
             box.style.animation = 'shake 0.5s ease';
             setTimeout(() => box.style.animation = '', 500);
         }
-    } catch (e) {
-        console.error(e);
-        loginError.innerText = "Access Denied: Incorrect Password.";
-         // Animation shake
-        const box = document.querySelector('.login-box');
-        box.style.animation = 'shake 0.5s ease';
-        setTimeout(() => box.style.animation = '', 500);
     }
 }
 
@@ -109,7 +106,7 @@ document.addEventListener('keydown', function(event) {
 // Text Config
 // Used decrypted message if available, else empty until login
 let message = ""; 
-const speed = 40;
+const speed = 80;
 
 // Typing Effect
 let i = 0;
@@ -118,27 +115,414 @@ function typeWriter() {
     if (!message && decryptedMessage) message = decryptedMessage;
     
     if (i < message.length) {
-        typingText.innerHTML += message.charAt(i);
+        const cursor = typingText ? typingText.querySelector('.cursor') : null;
+        if (cursor) {
+            cursor.before(message.charAt(i));
+        } else if (typingText) {
+            typingText.innerHTML += message.charAt(i);
+        }
         i++;
         setTimeout(typeWriter, speed);
     } else {
-        document.querySelector('.cursor').style.display = 'none';
+        const cursor = document.querySelector('.cursor');
+        if (cursor) cursor.style.display = 'none';
+        
         setTimeout(() => {
-            // Instead of showing buttons directly, start the game
-            startGame();
-        }, 500);
+            const introOverlay = document.getElementById('intro-overlay');
+            if (introOverlay) {
+                introOverlay.classList.remove('visible'); // Smooth fade with visibility: hidden
+                introOverlay.style.pointerEvents = 'none'; 
+            }
+            if (mainCard) {
+                mainCard.classList.remove('hidden');
+                mainCard.style.opacity = '1';
+                mainCard.style.animation = 'slideUp 0.8s cubic-bezier(0.175, 0.884, 0.32, 1.275)';
+            }
+        }, 1000);
     }
 }
 
-// Gaming Logic
-const gameContainer = document.getElementById('game-container');
-const scoreDisplay = document.getElementById('score');
-let score = 0;
-const targetScore = 5;
+// Gaming Logic Refactored
+const miniGameModal = document.getElementById('mini-game-modal');
+const gameSelection = document.getElementById('game-selection');
+const quizContainer = document.getElementById('quiz-container');
+const memoryContainer = document.getElementById('memory-game-container');
+const closeGameBtn = document.getElementById('close-game-btn');
+const gamesLoungeBtn = document.getElementById('games-lounge-btn');
+
+if (gamesLoungeBtn) {
+    gamesLoungeBtn.addEventListener('click', () => {
+        miniGameModal.classList.add('show');
+        showSelection();
+    });
+}
+
+if (closeGameBtn) {
+    closeGameBtn.addEventListener('click', () => {
+        miniGameModal.classList.remove('show');
+    });
+}
+
+function showSelection() {
+    gameSelection.style.display = 'block';
+    quizContainer.style.display = 'none';
+    memoryContainer.style.display = 'none';
+    document.getElementById('scramble-game-container').style.display = 'none';
+    document.getElementById('scratch-game-container').style.display = 'none';
+    document.getElementById('bucket-list-container').style.display = 'none';
+    document.getElementById('appraisal-container').style.display = 'none';
+}
+
+// 1. Compatibility Quiz Logic
+const quizData = [
+    {
+        q: "What is the best way to handle a difficult 'Recruitment' (Deployment)?",
+        o: ["A) Terminate the process", "B) Take a coffee break", "C) A warm hug from her"],
+        a: 2
+    },
+    {
+        q: "What is her favorite way to spend a 'Paid Time Off'?",
+        o: ["A) Working Overtime", "B) Dancing & Singing", "C) Managing JIRA tickets"],
+        a: 1
+    },
+    {
+        q: "The ideal 'Annual Appraisal' (Weekend) includes:",
+        o: ["A) Solo Trip to Kerala", "B) Movie, Cuddles & Sadya", "C) Professional Development"],
+        a: 1
+    },
+    {
+        q: "The candidate's most impressive HR skill is:",
+        o: ["A) Excel Pivot Tables", "B) Loving Shilpa Unconditionally", "C) Public Speaking"],
+        a: 1
+    }
+];
+
+let currentQuizStep = 0;
+
+function startQuiz() {
+    gameSelection.style.display = 'none';
+    quizContainer.style.display = 'block';
+    currentQuizStep = 0;
+    renderQuizStep();
+}
+
+function renderQuizStep() {
+    const data = quizData[currentQuizStep];
+    quizContainer.innerHTML = `
+        <h2 class="candidate-title" style="font-size: 1.2rem;">Shared Journey: Day ${currentQuizStep + 1}</h2>
+        <p class="quiz-question">${data.q}</p>
+        <div class="quiz-options">
+            ${data.o.map((opt, idx) => `<button class="quiz-option" onclick="handleQuizAnswer(${idx})">${opt}</button>`).join('')}
+        </div>
+    `;
+}
+
+function handleQuizAnswer(idx) {
+    const data = quizData[currentQuizStep];
+    if (idx === data.a) {
+        confetti({ particleCount: 50, spread: 60, colors: ['#ff3366', '#ffd700'] });
+    }
+    
+    currentQuizStep++;
+    if (currentQuizStep < quizData.length) {
+        renderQuizStep();
+    } else {
+        quizContainer.innerHTML = `
+            <h2 class="candidate-title">Journey Verified!</h2>
+            <p>Verdict: Infinite Love & Compatibility!</p>
+            <button class="quiz-option" onclick="showSelection()" style="margin-top: 20px;">Return to Lounge</button>
+        `;
+    }
+}
+
+// 2. Memory Match Game Logic
+const memoryIcons = [
+    'assets/images/magic_moment.png',
+    'assets/images/moment_1.png',
+    'assets/images/moment_2.png',
+    'assets/images/moment_3.png',
+    'assets/images/moment_4.png',
+    'assets/images/moment_5.png',
+    'assets/images/moment_6.png',
+    'assets/images/profile.png'
+];
+let flippedCards = [];
+let matchedPairs = 0;
+
+function startMemoryGame() {
+    gameSelection.style.display = 'none';
+    memoryContainer.style.display = 'block';
+    const grid = document.getElementById('memory-grid');
+    grid.innerHTML = '';
+    matchedPairs = 0;
+    flippedCards = [];
+
+    const deck = [...memoryIcons, ...memoryIcons].sort(() => Math.random() - 0.5);
+    
+    deck.forEach((icon, index) => {
+        const card = document.createElement('div');
+        card.className = 'memory-card';
+        card.dataset.icon = icon;
+        const iconHtml = icon.startsWith('assets') ? `<img src="${icon}" style="width:100%; height:100%; object-fit:cover; border-radius:5px;">` : icon;
+        card.innerHTML = `
+            <div class="memory-card-front">?</div>
+            <div class="memory-card-back">${iconHtml}</div>
+        `;
+        card.onclick = () => flipCard(card);
+        grid.appendChild(card);
+    });
+}
+
+function flipCard(card) {
+    if (flippedCards.length === 2 || card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+    card.classList.add('flipped');
+    flippedCards.push(card);
+
+    if (flippedCards.length === 2) {
+        checkMatch();
+    }
+}
+
+function checkMatch() {
+    const [card1, card2] = flippedCards;
+    if (card1.dataset.icon === card2.dataset.icon) {
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        matchedPairs++;
+        flippedCards = [];
+        if (matchedPairs === memoryIcons.length) {
+            setTimeout(() => {
+                confetti({ particleCount: 150, spread: 100 });
+                alert("You have a perfect memory for our love! ❤️");
+                showSelection();
+            }, 600);
+        }
+    } else {
+        setTimeout(() => {
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped');
+            flippedCards = [];
+        }, 1000);
+    }
+}
+
+// 3. Word Scramble Logic
+const scrambleWords = ["KERALA", "SADYA", "DANCE", "SINGING", "TRAVEL", "FOODIE", "SOULMATE"];
+let targetWord = "";
+let currentScramble = [];
+
+function startWordScramble() {
+    gameSelection.style.display = 'none';
+    document.getElementById('scramble-game-container').style.display = 'block';
+    
+    targetWord = scrambleWords[Math.floor(Math.random() * scrambleWords.length)];
+    const shuffled = targetWord.split('').sort(() => Math.random() - 0.5);
+    
+    const slots = document.getElementById('scramble-slots');
+    const letters = document.getElementById('scramble-letters');
+    slots.innerHTML = '';
+    letters.innerHTML = '';
+    currentScramble = new Array(targetWord.length).fill(null);
+
+    // Create Empty Slots
+    for (let j = 0; j < targetWord.length; j++) {
+        const slot = document.createElement('div');
+        slot.className = 'letter-tile';
+        slot.style.background = '#f8f9fa';
+        slot.innerHTML = '';
+        slot.dataset.index = j;
+        slot.onclick = () => removeLetter(j);
+        slots.appendChild(slot);
+    }
+
+    // Create Shuffled Letters
+    shuffled.forEach((char, idx) => {
+        const tile = document.createElement('div');
+        tile.className = 'letter-tile';
+        tile.innerText = char;
+        tile.onclick = () => placeLetter(tile, char);
+        letters.appendChild(tile);
+    });
+
+    document.getElementById('check-scramble-btn').onclick = checkScramble;
+}
+
+function placeLetter(tile, char) {
+    if (tile.style.visibility === 'hidden') return;
+    const firstEmpty = currentScramble.indexOf(null);
+    if (firstEmpty !== -1) {
+        currentScramble[firstEmpty] = { char, originalTile: tile };
+        const slotsGrid = document.getElementById('scramble-slots').children;
+        slotsGrid[firstEmpty].innerText = char;
+        tile.style.visibility = 'hidden';
+    }
+}
+
+function removeLetter(idx) {
+    if (currentScramble[idx]) {
+        const { originalTile } = currentScramble[idx];
+        originalTile.style.visibility = 'visible';
+        currentScramble[idx] = null;
+        document.getElementById('scramble-slots').children[idx].innerText = '';
+    }
+}
+
+function checkScramble() {
+    const guess = currentScramble.map(s => s ? s.char : '').join('');
+    if (guess === targetWord) {
+        confetti({ particleCount: 100, spread: 70 });
+        alert("Correct! You're a word wizard in love! ❤️");
+        showSelection();
+    } else {
+        alert("Not quite right, try again! ✨");
+    }
+}
+
+// 4. Scratch Card Logic
+function startScratchCard() {
+    gameSelection.style.display = 'none';
+    document.getElementById('scratch-game-container').style.display = 'block';
+    
+    const canvas = document.getElementById('scratch-canvas');
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+
+    // Fill with gold cover
+    ctx.fillStyle = '#C0C0C0'; // Silver scratch surface
+    ctx.fillRect(0, 0, width, height);
+    
+    // Add some "scratch here" text
+    ctx.fillStyle = '#8e8e8e';
+    ctx.font = '20px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Scratch to Reveal!', width / 2, height / 2);
+
+    let isDrawing = false;
+
+    const scratch = (e) => {
+        if (!isDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const x = clientX - rect.left;
+        const y = clientY - rect.top;
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 20, 0, Math.PI * 2);
+        ctx.fill();
+        
+        checkScratchProgress();
+    };
+
+    const checkScratchProgress = () => {
+        const pixels = ctx.getImageData(0, 0, width, height).data;
+        let cleared = 0;
+        for (let j = 3; j < pixels.length; j += 4) {
+            if (pixels[j] === 0) cleared++;
+        }
+        if (cleared / (pixels.length / 4) > 0.6) { // 60% cleared
+            canvas.style.transition = 'opacity 1s ease';
+            canvas.style.opacity = '0';
+            setTimeout(() => {
+                confetti({ particleCount: 100 });
+                showSelection();
+            }, 2000);
+        }
+    };
+
+    canvas.onmousedown = canvas.ontouchstart = () => isDrawing = true;
+    canvas.onmouseup = canvas.ontouchend = () => isDrawing = false;
+    canvas.onmousemove = canvas.ontouchmove = scratch;
+}
+
+// 5. Dream Bucket List Logic
+const bucketItems = [
+    { text: "Trip to Munnar ⛰️", done: false },
+    { text: "Learn a new dance style together 💃", done: false },
+    { text: "Cook a Full Kerala Sadya 🥘", done: false },
+    { text: "Sing our favorite song at Karaoke 🎤", done: false },
+    { text: "Build our dream home 🏠", done: false },
+    { text: "Travel the world ✈️", done: false }
+];
+
+function startBucketList() {
+    gameSelection.style.display = 'none';
+    document.getElementById('bucket-list-container').style.display = 'block';
+    
+    const list = document.getElementById('bucket-list');
+    list.innerHTML = '';
+    
+    bucketItems.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = `bucket-item ${item.done ? 'checked' : ''}`;
+        div.innerHTML = `
+            <div class="bucket-checkbox">${item.done ? '✓' : ''}</div>
+            <span>${item.text}</span>
+        `;
+        div.onclick = () => toggleBucketItem(idx, div);
+        list.appendChild(div);
+    });
+}
+
+function toggleBucketItem(idx, element) {
+    bucketItems[idx].done = !bucketItems[idx].done;
+    element.classList.toggle('checked');
+    element.querySelector('.bucket-checkbox').innerText = bucketItems[idx].done ? '✓' : '';
+    
+    if (bucketItems[idx].done) {
+        confetti({ particleCount: 30, spread: 50 });
+    }
+}
+
+// 6. Partnership Appraisal Logic
+const appraisalFeedbacks = {
+    0: "Needs Urgent HR Attention! ⚠️",
+    25: "Under Probation... 📁",
+    50: "Good Potential! 📈",
+    75: "Highly Productive Love! ✨",
+    100: "Perfect Partnership! (No Appraisals Needed) 🏆"
+};
+
+function startAppraisal() {
+    gameSelection.style.display = 'none';
+    document.getElementById('appraisal-container').style.display = 'block';
+    
+    const slider = document.getElementById('appraisal-slider');
+    const score = document.getElementById('appraisal-score');
+    const feedback = document.getElementById('appraisal-feedback');
+    
+    slider.oninput = () => {
+        const val = slider.value;
+        score.innerText = `Rating: ${val}%`;
+        
+        let msg = appraisalFeedbacks[0];
+        if (val > 25) msg = appraisalFeedbacks[25];
+        if (val > 50) msg = appraisalFeedbacks[50];
+        if (val > 75) msg = appraisalFeedbacks[75];
+        if (val == 100) msg = appraisalFeedbacks[100];
+        
+        feedback.innerText = `"${msg}"`;
+        
+        if (val == 100) {
+            confetti({ particleCount: 1, origin: { y: 0.9 }, scalar: 2 });
+        }
+    };
+}
+
+// 7. Bridging Classic Catch Hearts
+function startCatchHearts() {
+    miniGameModal.classList.remove('show');
+    score = 0;
+    scoreDisplay.innerText = 0;
+    startGame();
+}
 
 function startGame() {
     gameContainer.classList.remove('hidden');
-    gameContainer.style.display = 'block'; // Ensure visibility
+    gameContainer.style.display = 'block'; 
     spawnHeart();
 }
 
@@ -207,7 +591,7 @@ function moveHeart(heart) {
 }
 
 function unlockOffer() {
-    gameContainer.innerHTML = '<div class="glitch-text" style="color: #00b894;">LOVE UNLOCKED</div>';
+    gameContainer.innerHTML = '<div class="candidate-title" style="color: #00b894; font-size: 1.5rem;">LOVE UNLOCKED</div>';
     
     // Confetti for mini-win
     confetti({
@@ -221,9 +605,11 @@ function unlockOffer() {
         gameContainer.classList.add('hidden');
         gameContainer.style.display = 'none';
         
-        actionButtons.classList.remove('hidden');
-        actionButtons.style.opacity = 1;
-        actionButtons.style.animation = 'fadeIn 1s ease';
+        // Show the dashboard directly
+        if (mainCard) {
+            mainCard.classList.remove('hidden');
+            mainCard.style.opacity = 1;
+        }
     }, 1500);
 }
 
@@ -264,141 +650,134 @@ document.addEventListener('mousemove', (e) => {
     }, 2000); // Cleanup after animation
 });
 
-// 3D Tilt Effect
-function addTiltEffect(card) {
-    card.addEventListener('mousemove', (e) => {
-        const xAxis = (window.innerWidth / 2 - e.pageX) / 20;
-        const yAxis = (window.innerHeight / 2 - e.pageY) / 20;
-        card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-    });
-
-    card.addEventListener('mouseenter', () => {
-        card.style.transition = 'none';
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transition = 'all 0.5s ease';
-        card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-    });
-}
 
 
 // Initialize
 // Initialize moved to click handler
 
-// Transition to Proposal
-if (viewOfferBtn) {
-    viewOfferBtn.addEventListener('click', () => {
-        if (mainCard) {
-            mainCard.style.transform = 'translateY(-100vh) rotate(-10deg)';
-            mainCard.style.opacity = '0';
-        }
-        
-        setTimeout(() => {
-            if (mainCard) mainCard.classList.add('hidden');
-            if (proposalCard) {
-                proposalCard.classList.remove('hidden');
-                proposalCard.style.display = 'block'; // force display block for animation
-                
-                // Small delay to allow display block to apply before opacity transition
-                setTimeout(() => {
-                    proposalCard.style.opacity = '1';
-                    proposalCard.style.animation = 'slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                }, 50);
+
+
+
+
+// Magical Sparkle Trail
+function initSparkleTrail() {
+    const name = "SHILPA";
+    let nameIndex = 0;
+    let particleCount = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        particleCount++;
+        if (Math.random() < 0.15) {
+            const isNameChar = particleCount % 12 === 0;
+            const particle = document.createElement('div');
+            
+            if (isNameChar) {
+                particle.className = 'name-particle';
+                particle.innerText = name[nameIndex];
+                nameIndex = (nameIndex + 1) % name.length;
+            } else {
+                particle.className = 'sparkle';
             }
             
-        }, 500);
-    });
-}
-
-// "No" Button Logic
-if (noBtn) {
-    noBtn.addEventListener('mouseover', moveButton);
-    noBtn.addEventListener('click', moveButton);
-
-    // Add touchstart for mobile responsiveness (faster than click/mouseover on touch)
-    noBtn.addEventListener('touchstart', (e) => {
-        e.preventDefault(); // Prevent actual click
-        moveButton();
-    });
-}
-
-function moveButton() {
-    if (!noBtn) return;
-    // Get viewport dimensions
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    
-    // Button dimensions
-    const btnWidth = noBtn.offsetWidth;
-    const btnHeight = noBtn.offsetHeight;
-
-    // Calculate safe area (padding from edges)
-    const padding = 20;
-    
-    // Calculate max X and Y
-    const maxX = viewportWidth - btnWidth - padding;
-    const maxY = viewportHeight - btnHeight - padding;
-
-    // Determine new position
-    let x = Math.random() * maxX;
-    let y = Math.random() * maxY;
-
-    // Ensure it doesn't overlap completely with the "Yes" button if possible (simple check)
-    // For now, just keeping it in bounds is a huge improvement for mobile
-    
-    noBtn.style.position = 'fixed'; // Use fixed to ensure it can go anywhere
-    noBtn.style.left = `${Math.max(padding, x)}px`;
-    noBtn.style.top = `${Math.max(padding, y)}px`;
-    noBtn.style.zIndex = '100'; // Ensure it stays on top of other elements
-    
-    const texts = ["Are you sure?", "Think again!", "Application Rejected? No way!", "Just click Yes!", "Nice try!"];
-    noBtn.innerText = texts[Math.floor(Math.random() * texts.length)];
-}
-
-// "Yes" Button Logic
-if (yesBtn) {
-    yesBtn.addEventListener('click', () => {
-        // 1. Confetti Explosion
-        confetti({
-            particleCount: 200,
-            spread: 100,
-            origin: { y: 0.7 },
-            colors: ['#ff3366', '#6c5ce7', '#00b894']
-        });
-
-        // 2. Show Success Overlay
-        setTimeout(() => {
-            if (successOverlay) {
-                successOverlay.classList.remove('hidden');
-                successOverlay.style.display = 'flex';
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            
+            if (!isNameChar) {
+                const size = Math.random() * 5 + 3 + 'px';
+                particle.style.width = size;
+                particle.style.height = size;
             }
-        }, 1000);
-
-        // 3. Continuous Confetti
-        let duration = 5 * 1000;
-        let animationEnd = Date.now() + duration;
-        let defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 200 };
-
-        function random(min, max) {
-            return Math.random() * (max - min) + min;
+            
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), isNameChar ? 2000 : 1000);
         }
-
-        let interval = setInterval(function() {
-            let timeLeft = animationEnd - Date.now();
-
-            if (timeLeft <= 0) {
-                return clearInterval(interval);
-            }
-
-            let particleCount = 50 * (timeLeft / duration);
-            confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 } }));
-            confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 } }));
-        }, 250);
     });
 }
 
-// Floating Hearts
+// Acrostic Poem Logic
+function initAcrosticLogic() {
+    const waxSeal = document.querySelector('.wax-seal');
+    const acrosticCard = document.getElementById('acrostic-card');
+    
+    if (waxSeal && acrosticCard) {
+        waxSeal.addEventListener('click', (e) => {
+            e.stopPropagation();
+            acrosticCard.classList.add('show');
+            
+            // Auto close on next click anywhere
+            const closeHandler = () => {
+                acrosticCard.classList.remove('show');
+                window.removeEventListener('click', closeHandler);
+            };
+            setTimeout(() => window.addEventListener('click', closeHandler), 100);
+        });
+    }
+}
+
+// Hidden Interactive Hearts
+function createHiddenHearts() {
+    const compliments = [
+        "You're amazing!", "Always thinking of you ❤️", "My favorite person ✨", 
+        "You're my sunshine!", "Endless love for you", "Simply beautiful"
+    ];
+    
+    // Spawn locally in safe container regions
+    const anchors = [
+        { top: '10%', left: '10%' },
+        { top: '80%', left: '5%' },
+        { top: '15%', left: '85%' },
+        { bottom: '20%', right: '10%' }
+    ];
+
+    anchors.forEach(pos => {
+        const heart = document.createElement('div');
+        heart.className = 'hidden-heart';
+        heart.innerHTML = '❤️ <div class="heart-tooltip">' + 
+            compliments[Math.floor(Math.random() * compliments.length)] + 
+            '</div>';
+        
+        Object.keys(pos).forEach(key => heart.style[key] = pos[key]);
+        document.body.appendChild(heart);
+    });
+}
+
+// Falling Petals
+let petalInterval;
+function createFallingPetals(density = 1) {
+    if (petalInterval) clearInterval(petalInterval);
+    
+    // density 1 = normal, density 2 = music playing
+    const baseInterval = window.innerWidth < 768 ? 1000 : 300;
+    const intervalTime = baseInterval / density;
+    
+    petalInterval = setInterval(() => {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        
+        // Randomize size
+        const size = Math.random() * 10 + 10 + 'px';
+        petal.style.width = size;
+        petal.style.height = size;
+        
+        // Randomize position
+        petal.style.left = Math.random() * 100 + 'vw';
+        
+        // Randomize duration
+        const duration = Math.random() * 3 + 5 + 's';
+        petal.style.animationDuration = duration;
+        
+        // Randomize delay
+        petal.style.animationDelay = Math.random() * 5 + 's';
+        
+        document.body.appendChild(petal);
+        
+        setTimeout(() => {
+            petal.remove();
+        }, 8000);
+    }, intervalTime);
+}
+
+// Floating Hearts (Background)
 function createFloatingHearts() {
     const container = document.body;
     const symbols = ['❤️', '💖', '💕', '💘', '💗', '💓', '💞'];
@@ -425,54 +804,33 @@ function createFloatingHearts() {
     }, intervalTime);
 }
 
-// Add CSS for float animation dynamically if needed, 
-// but we'll count on style.css for basic keyframes or add here:
-// Add CSS for float animation dynamically if needed, 
-// but we'll count on style.css for basic keyframes or add here:
-// Dynamic style removed, handled in style.css
-
-// Letter Logic (Moved to Card Interaction below)
-// const letterModal = ... 
-// const openLetterBtn = ...
-// See "Card Interaction" section
-
-// Timeline Logic (Merged into Storybook)
-// const timelineModal = ... 
-// See "Storybook Interaction" section
-
 // Intro Overlay Logic
 const introOverlay = document.getElementById('intro-overlay');
 const enterBtn = document.getElementById('enter-btn');
 
 if (enterBtn) {
     enterBtn.addEventListener('click', () => {
-        if (introOverlay) introOverlay.style.opacity = '0';
+        if (introOverlay) {
+            introOverlay.classList.remove('visible');
+            introOverlay.style.pointerEvents = 'none';
+        }
         
-        // Unmute/Play hidden Audio IMMEDIATELY
+        // Unmute/Play hidden Audio
         const bgMusic = document.getElementById('bg-music');
         if (bgMusic) {
-            bgMusic.volume = 0.5; // Set volume to 50%
-            bgMusic.play().then(() => {
-                // If played successfully, update UI
-                setPlayerState(true);
-            }).catch(e => {
-                console.log("Audio play failed:", e);
-                // Fallback: Show play button state if autoplay fails
-                setPlayerState(false);
-            });
+            bgMusic.volume = 0.8;
+            bgMusic.playbackRate = 1.15;
+            bgMusic.play().then(() => setPlayerState(true)).catch(() => setPlayerState(false));
         }
 
         setTimeout(() => {
-            if (introOverlay) introOverlay.style.display = 'none';
             // Start other animations only after entry
             createFloatingHearts();
+            createFallingPetals(1); 
+            initSparkleTrail();     // Start magic trail
+            createHiddenHearts();   // Add hidden compliments
+            initAcrosticLogic();    // Setup hidden poem
             setTimeout(typeWriter, 500);
-            
-            // Only add tilt effect on desktop/larger screens
-            if (window.innerWidth > 768) {
-                if (mainCard) addTiltEffect(mainCard);
-                if (proposalCard) addTiltEffect(proposalCard);
-            }
         }, 1000);
     });
 }
@@ -498,23 +856,29 @@ function stopParticles() {
 }
 
 function spawnMusicParticle() {
-    const symbols = ['🎵', '🎶', '❤️', '🎼', '✨'];
     const particle = document.createElement('div');
     particle.className = 'music-particle';
-    particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+    
+    // Create Balloon Structure
+    const balloon = document.createElement('div');
+    balloon.className = 'heart-balloon';
+    
+    const string = document.createElement('div');
+    string.className = 'balloon-string';
+    
+    balloon.appendChild(string);
+    particle.appendChild(balloon);
     
     // Position near the music player (bottom left)
-    // We'll use fixed positioning based on window size to keep it near the player
-    // Player is bottom: 20px, left: 20px, width ~300px
-    const startX = 20 + Math.random() * 250; // Randomly along the player width
-    const startY = window.innerHeight - 80; // Top of the player area
+    const startX = 20 + Math.random() * 250; 
+    const startY = window.innerHeight - 80; 
     
     particle.style.left = `${startX}px`;
     particle.style.top = `${startY}px`;
     
-    // Random drift
-    const drift = (Math.random() * 100 - 50) + 'px';
-    const rotation = (Math.random() * 360) + 'deg';
+    // Random drift and rotation for variety
+    const drift = (Math.random() * 150 - 75) + 'px';
+    const rotation = (Math.random() * 40 - 20) + 'deg';
     
     particle.style.setProperty('--drift', drift);
     particle.style.setProperty('--r', rotation);
@@ -523,7 +887,7 @@ function spawnMusicParticle() {
     
     setTimeout(() => {
         particle.remove();
-    }, 4000); // Cleanup after animation
+    }, 5000); // Matches longer animation duration
 }
 
 function setPlayerState(isPlaying) {
@@ -531,10 +895,12 @@ function setPlayerState(isPlaying) {
         musicDisc.classList.add('spinning');
         playPauseBtn.innerText = '⏸';
         startParticles();
+        createFallingPetals(2); // Double density when music plays
     } else {
         musicDisc.classList.remove('spinning');
         playPauseBtn.innerText = '▶';
         stopParticles();
+        createFallingPetals(1); // Back to normal
     }
 }
 
@@ -563,6 +929,7 @@ function openStorybook() {
         // Small timeout to allow browser to render display:flex before adding opacity class
         setTimeout(() => {
             letterModal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scroll
         }, 10);
     }
 }
@@ -574,6 +941,7 @@ function closeStorybook() {
         // Wait for transition to finish before hiding
         setTimeout(() => {
             letterModal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scroll
         }, 500); // Matches CSS transition duration
     }
 }
@@ -665,24 +1033,6 @@ function setupSignaturePad() {
 // Initial setup (if canvas exists primarily, though usually hidden)
 setupSignaturePad();
 
-// Removing Old Timeline/Cinematic Logic references
-// (Timeline logic was replaced by this unified Storybook)
-// Removed outdated modal close logic if prevalent elsewhere or redundant
-// Letter Modal Logic (Legacy removal/update)
-/* 
-const letterModal = document.getElementById('letter-modal'); // Already defined
-const openLetterBtn = document.getElementById('open-letter-btn'); // Already defined
-const closeLetter = document.querySelector('.close-letter'); // Removed from DOM
-
-openLetterBtn.addEventListener('click', () => {
-    letterModal.classList.remove('hidden');
-});
-
-closeLetter.addEventListener('click', () => {
-    letterModal.classList.add('hidden');
-});
-*/
-
 if (playPauseBtn && bgMusic) {
     playPauseBtn.addEventListener('click', () => {
         if (bgMusic.paused) {
@@ -701,8 +1051,45 @@ if (playPauseBtn && bgMusic) {
     });
 }
 
-// Remove window.onload logic to prevent premature animation
-// window.onload = ...  <-- Removed/Replaced below
+// --- Image Lightbox Logic ---
+const lightboxModal = document.getElementById('lightbox-modal');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const closeLightbox = document.querySelector('.close-lightbox');
+const momentsGrid = document.querySelector('.moments-grid');
 
-// Initialize (Just basic setup, animations wait for click)
-// No auto-start logic here anymore
+if (momentsGrid) {
+    momentsGrid.addEventListener('click', (e) => {
+        const item = e.target.closest('.moment-item');
+        if (item) {
+            const img = item.querySelector('img');
+            lightboxImg.src = img.src;
+            lightboxCaption.innerText = "❤️ Shared Magic";
+            lightboxModal.classList.remove('hidden');
+        }
+    });
+}
+
+if (closeLightbox) {
+    closeLightbox.addEventListener('click', () => {
+        lightboxModal.classList.add('hidden');
+    });
+}
+
+lightboxModal.addEventListener('click', (e) => {
+    if (e.target === lightboxModal) {
+        lightboxModal.classList.add('hidden');
+    }
+});
+
+// --- Enhanced Image Integration (Storybook Background) ---
+// Add a subtle watercolor background to the storybook left page when it opens
+const storybookBook = document.querySelector('.book-container');
+if (storybookBook) {
+    const leftPage = storybookBook.querySelector('.left-page');
+    if (leftPage) {
+        leftPage.style.backgroundImage = "linear-gradient(rgba(232, 226, 210, 0.8), rgba(253, 250, 240, 0.9)), url('assets/images/background.png')";
+        leftPage.style.backgroundSize = "cover";
+        leftPage.style.backgroundPosition = "center";
+    }
+}

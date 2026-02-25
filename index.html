@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Perfect Match ❤️</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Great+Vibes&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Great+Vibes&family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -29,139 +29,115 @@
     <div id="intro-overlay">
         <div class="intro-content">
             <h1>Subject: Your Offer Letter</h1>
-            <p>One new message from <strong>Future Husband</strong></p>
+            <p>One new message from <strong>Your Loving Partner</strong></p>
             <button id="enter-btn" class="glow-btn">✉️ Unmute My Heart</button>
+            <p class="headphones-hint">🎧 Headphones recommended for the experience</p>
         </div>
     </div>
 
-    <div class="container">
+    <!-- Lightbox Modal for Images -->
+    <div id="lightbox-modal" class="modal-overlay hidden">
+        <div class="lightbox-content">
+            <span class="close-lightbox">&times;</span>
+            <img id="lightbox-img" src="" alt="Full Screen Moment">
+            <p id="lightbox-caption"></p>
+        </div>
+    </div>
         <!-- Card 1: The Status Update -->
         <div class="card glass-effect" id="main-card">
             <div class="card-border"></div>
-            <div class="badge">📣 Proposal Status</div>
+            <div class="badge">💌 For Shilpa</div>
             
-            <div class="profile-section">
-                <div class="heart-pulse">❤️</div>
+            <div class="profile-section compact">
+                <div class="profile-img-container">
+                    <img src="assets/images/profile.png" alt="Shilpa" class="profile-img">
+                </div>
             </div>
 
-            <h1>Candidate Found for Shilpa!</h1>
+            <h1 class="candidate-title">Everything About Her</h1>
+            <p class="romantic-subtitle">The girl who makes my world make sense ❤️</p>
             
-            <div class="stats-grid">
+            <div class="snapshot-container">
+                <img src="assets/images/magic_moment.png" alt="Shilpa" class="snapshot-img">
+                <div class="snapshot-label">Our Magic ✨</div>
+            </div>
+
+            <div class="stats-grid compact-grid">
                 <div class="stat-item">
-                    <span class="label">Position</span>
-                    <span class="value">Soulmate</span>
+                    <span class="label">👩 She Is</span>
+                    <span class="value">Shilpa</span>
                 </div>
                 <div class="stat-item">
-                    <span class="label">Compatibility</span>
-                    <span class="value">100%</span>
+                    <span class="label">💃 Her Talent</span>
+                    <span class="value">Dance & Singing</span>
                 </div>
                 <div class="stat-item">
-                    <span class="label">Contract</span>
-                    <span class="value">Forever</span>
+                    <span class="label">✈️ She Loves</span>
+                    <span class="value">Travel & Food</span>
                 </div>
                 <div class="stat-item">
-                    <span class="label">Benefits</span>
-                    <span class="value">Unlimited hugs</span>
+                    <span class="label">🌴 Her Roots</span>
+                    <span class="value">Kerala</span>
                 </div>
-                <div class="stat-item full-width">
-                    <span class="label">System Uptime (Love Duration)</span>
+                <div class="stat-item">
+                    <span class="label">💼 Her Work</span>
+                    <span class="value">HR Pro</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">😊 Her Vibe</span>
+                    <span class="value">Kindest Soul</span>
+                </div>
+                <div class="stat-item full-width-sm">
+                    <span class="label">⏱ How Long I've Loved Her</span>
                     <span class="value" id="uptime-counter">Calculating...</span>
                 </div>
             </div>
 
-            <div class="message-box">
-                <p><strong>To Shilpa, the HR who hired my heart:</strong></p>
-                <p id="typing-text"></p>
-                <span class="cursor">|</span>
+
+            <div class="benefits-container">
+                <span class="benefit-chip">😊 Her Smile</span>
+                <span class="benefit-chip">💃 Her Dance</span>
+                <span class="benefit-chip">😊 Her Laugh</span>
+                <span class="benefit-chip">🎤 Her Voice</span>
+            </div>
+
+            <div class="moments-section">
+                <h2 class="section-title">✨ Our Moments</h2>
+                <div class="moments-grid">
+                    <div class="moment-item"><img src="assets/images/magic_moment.png" alt="magic moment"></div>
+                    <div class="moment-item"><img src="assets/images/moment_1.png" alt="Moment 1"></div>
+                    <div class="moment-item"><img src="assets/images/moment_2.png" alt="Moment 2"></div>
+                    <!-- <div class="moment-item"><img src="assets/images/moment_3.png" alt="Moment 3"></div> -->
+                    <div class="moment-item"><img src="assets/images/moment_4.png" alt="Moment 4"></div>
+                    <div class="moment-item"><img src="assets/images/moment_5.png" alt="Moment 5"></div>
+                    <div class="moment-item"><img src="assets/images/moment_6.png" alt="Moment 6"></div>
+                    <div class="moment-item"><img src="assets/images/moment_7.png" alt="Moment 7"></div>
+                    <div class="moment-item"><img src="assets/images/background.png" alt="background"></div>
+                    <div class="moment-item"><img src="assets/images/profile.png" alt="profile"></div>
+                    <!-- <div class="moment-item"><img src="assets/images/sticker.png" alt="sticker"></div> -->
+                </div>
+            </div>
+
+            <div class="message-box compact-box">
+                <p id="typing-text"><span class="cursor">|</span></p>
             </div>
 
             <!-- Mini Game Overlay (Initially Hidden) -->
             <div id="game-container" class="hidden">
-                <div class="glitch-text" data-text="HEART LOCKED">HEART LOCKED</div>
+                <h1 class="candidate-title" style="font-size: 1.8rem;">HEART LOCKED</h1>
                 <p class="mission-text">Mission: Collect 5 Hearts to Unlock Offer</p>
                 <div class="score-board">Hearts Collected: <span id="score">0</span>/5</div>
             </div>
 
-            <div class="actions " id="action-buttons">
-                <div class="button-group">
-                    <button id="view-offer-btn" class="glow-on-hover">📂 View Official Offer</button>
-                    <button id="read-letter-btn" class="secondary-glow-btn" style="border-color: #ff3366; color: #ff3366;">💌 Read Letter</button>
-                </div>
+            <div class="bottom-nav">
+                <button id="games-lounge-btn" class="nav-item">
+                    <span class="nav-icon">🎮</span>
+                    <span class="nav-label">Play</span>
+                </button>
             </div>
         </div>
 
-        <!-- Card 2: The Proposal -->
-        <div class="card glass-effect hidden tilt-effect" id="proposal-card">
-            <div class="stamp">OFFICIAL</div>
-            <h1>The Final Decision</h1>
-            
-            <p class="proposal-text">
-                Will you recruit me as your permanent partner?
-                <br><br>
-                <span class="handwritten">Be my Better Half?</span>
-            </p>
 
-            <div class="checklist">
-                <label class="check-item"><input type="checkbox" checked readonly> <span>Accept all hugs</span></label>
-                <label class="check-item"><input type="checkbox" checked readonly> <span>Forever Partner</span></label>
-                <label class="check-item"><input type="checkbox" checked readonly> <span>Navigate life together</span></label>
-            </div>
-
-            <div class="proposal-actions">
-                <button id="yes-btn" class="yes-btn">YES, I Accept! 💍</button>
-                <button id="no-btn" class="no-btn">No</button>
-            </div>
-        </div>
-
-        <!-- Success Overlay -->
-        <div id="success-overlay" class="hidden">
-            <div class="success-content">
-                <h1 class="celebrate-text">Offer Accepted! 💏</h1>
-                <p>Onboarding Complete. Welcome Home!</p>
-                <div class="gallery">
-                    <!-- Placeholders for memories -->
-                    <div class="memory-card">🥰</div>
-                    <div class="memory-card">🏡</div>
-                    <div class="memory-card">✈️</div>
-                </div>
-                <button onclick="location.reload()" class="refresh-btn">Replay Memory</button>
-            </div>
-        </div>
-        <!-- Letter Modal (Book Style) -->
-        <div id="letter-modal" class="hidden">
-            <div class="storybook-backdrop"></div>
-            
-            <div class="letter-container-wrapper">
-                <button class="close-storybook">&times;</button>
-                
-                <div class="book-container">
-                    <!-- Left Page: Title & Dedication -->
-                    <div class="page left-page">
-                        <div class="page-content">
-                            <h1 class="book-title">The Story of Us</h1>
-                            <div class="book-decoration">❤️</div>
-                            <p class="book-dedication">
-                                To Shilpa,<br>
-                                The HR who hired my heart.
-                            </p>
-                            <p class="book-date">August 2023 — Forever</p>
-                        </div>
-                    </div>
-
-                    <!-- Right Page: The Letter -->
-                    <div class="page right-page">
-                        <div class="love-letter-paper">
-                            <h2 class="letter-title">Dearest Shilpa,</h2>
-                            
-                            <div class="letter-body" id="letter-content-area">
-                                <!-- Content will be decrypted here -->
-                                <p style="text-align: center; color: #888;"><i>Content locked. Please login.</i></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     <!-- Custom Music Player -->
     <div class="music-player glass-effect">
@@ -190,6 +166,74 @@
         <source src="love-story.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+    <!-- Mini Games Modal -->
+    <div id="mini-game-modal" class="mini-game-modal">
+        <div class="game-content-container">
+            <button class="game-close-btn" id="close-game-btn">✕</button>
+            <div id="game-selection">
+                <h2 class="candidate-title" style="font-size: 1.5rem;">Shilpa's Games Lounge</h2>
+                <div class="quiz-options">
+                    <button class="quiz-option" onclick="startQuiz()">📝 Compatibility Quiz</button>
+                    <button class="quiz-option" onclick="startMemoryGame()">🧩 Soulmate Memory Match</button>
+                    <button class="quiz-option" onclick="startWordScramble()">🔠 Word Scramble</button>
+                    <button class="quiz-option" onclick="startScratchCard()">✨ Love Scratch Card</button>
+                    <button class="quiz-option" onclick="startBucketList()">🗒️ Dream Bucket List</button>
+                    <button class="quiz-option" onclick="startAppraisal()">📋 Performance Appraisal</button>
+                    <button class="quiz-option" onclick="startCatchHearts()">❤️ Classic Heart Catch</button>
+                </div>
+            </div>
+            <div id="quiz-container" style="display: none;">
+                <!-- Quiz content injected by JS -->
+            </div>
+            <div id="memory-game-container" style="display: none;">
+                <h2 class="candidate-title" style="font-size: 1.5rem;">Memory Match</h2>
+                <div id="memory-grid" class="memory-grid"></div>
+            </div>
+            <div id="scramble-game-container" style="display: none;">
+                <h2 class="candidate-title" style="font-size: 1.5rem;">Word Scramble</h2>
+                <p class="mission-text">Unscramble the romantic word!</p>
+                <div id="scramble-slots" class="scramble-container"></div>
+                <div id="scramble-letters" class="scramble-container"></div>
+                <button class="quiz-option" id="check-scramble-btn" style="margin-top: 10px;">Check Answer</button>
+            </div>
+            <div id="scratch-game-container" style="display: none;">
+                <h2 class="candidate-title" style="font-size: 1.5rem;">Love Scratch Card</h2>
+                <p class="mission-text">Scratch to reveal a message!</p>
+                <div class="scratch-card-container">
+                    <div class="scratch-content" id="scratch-reward">You are my whole world! ❤️</div>
+                    <canvas id="scratch-canvas" width="280" height="180"></canvas>
+                </div>
+            </div>
+            <div id="bucket-list-container" style="display: none;">
+                <h2 class="candidate-title" style="font-size: 1.5rem;">Our Dream Bucket List</h2>
+                <p class="mission-text">Things we'll do together! ✨</p>
+                <div id="bucket-list" class="bucket-list">
+                    <!-- Bucket items injected by JS -->
+                </div>
+            </div>
+            <div id="appraisal-container" style="display: none;">
+                <h2 class="candidate-title" style="font-size: 1.5rem;">Partnership Review</h2>
+                <p class="mission-text">How are we doing as a team? 📈</p>
+                <div class="appraisal-container">
+                    <input type="range" min="0" max="100" value="100" class="appraisal-slider" id="appraisal-slider">
+                    <div id="appraisal-score" style="font-weight: bold; font-size: 1.2rem; color: #ff3366;">Rating: 100%</div>
+                    <div id="appraisal-feedback" class="appraisal-feedback">"Perfect Partnership!"</div>
+                    <button class="quiz-option" onclick="showSelection()" style="margin-top: 15px;">Submit Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Acrostic Poem Card (Hidden) -->
+    <div id="acrostic-card" class="acrostic-card">
+        <div class="acrostic-line"><span class="acrostic-letter">S</span>himmering like a star in the night,</div>
+        <div class="acrostic-line"><span class="acrostic-letter">H</span>olding my world with such delight.</div>
+        <div class="acrostic-line"><span class="acrostic-letter">I</span>n your eyes, my forever I see,</div>
+        <div class="acrostic-line"><span class="acrostic-letter">L</span>oving you is all I'll ever be.</div>
+        <div class="acrostic-line"><span class="acrostic-letter">P</span>ure is the joy that you bring,</div>
+        <div class="acrostic-line"><span class="acrostic-letter">A</span>lways you, my everything.</div>
+    </div>
 
     <script src="script.js"></script>
 </body>
